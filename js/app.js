@@ -42,7 +42,7 @@
             const {title, poster_path, vote_average, overview, genre_ids, release_date, id} = movie;
             const movieEl = document.createElement("div");
             movieEl.classList.add("movie");
-            movieEl.innerHTML = `\n    <div class="movie__cover-inner">\n      <img src="${movie.poster_path ? IMG_PATH + poster_path : "https://i.pinimg.com/originals/bf/7a/3b/bf7a3b774d9dde18953fbea669a2a23a.jpg"}" alt="" class="movie_cover">\n      <div class="movie__cover--darkened"></div>\n    </div>\n    <div class="movie__info">\n      <div class="movie__title">${movie.title}</div>\n      <div class="movie__category"></div>\n      <div class="movie__average movie__average--${getClassByVote(movie.vote_average)}">${movie.vote_average}</div>\n    </div>\n        `;
+            movieEl.innerHTML = `\n    <div class="movie__cover-inner">\n      <img src="${movie.poster_path ? IMG_PATH + poster_path : "https://i.pinimg.com/originals/bf/7a/3b/bf7a3b774d9dde18953fbea669a2a23a.jpg"}" alt="" class="movie_cover">\n      <div class="movie__cover--darkened"></div>\n    </div>\n    <div class="movie__info">\n      <div class="movie__title">${movie.title}</div>\n      <div class="movie__category"></div>\n      <div class="movie__average movie__average--${getClassByVote(movie.vote_average)}">${movie.vote_average.toFixed(1)}</div>\n    </div>\n        `;
             moviesEl.appendChild(movieEl);
         }));
     }
@@ -56,6 +56,24 @@
             search.value = "";
         }
     }));
+    const ul = document.querySelector("ul");
+    let allPages = 15;
+    function elem(allPages, page) {
+        let li = "";
+        let beforePages = page - 1;
+        let afterPages = page + 1;
+        let liActive;
+        if (page > 1) li += `<li class="button" onclick="elem(allPages, ${page - 1})" ><i class="_icon-arrow-prev"></i></li>`;
+        for (let pageLength = beforePages; pageLength <= afterPages; pageLength++) {
+            if (pageLength > allPages) continue;
+            if (0 == pageLength) pageLength += 1;
+            if (page == pageLength) liActive = "active"; else liActive = "";
+            li += `<li class="numb ${liActive}" onclick="elem(allPages, ${pageLength})" ><span>${pageLength}</span></li>`;
+        }
+        if (page < allPages) li += `<li class="button" onclick="elem(allPages, ${page + 1})" ><i class="_icon-arrow-next"></i></li>`;
+        ul.innerHTML = li;
+    }
+    elem(allPages, 1);
     window["FLS"] = true;
     isWebp();
 })();
