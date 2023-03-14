@@ -501,7 +501,7 @@ body {
   }
 
   .movie {
-    width: 8.4375rem;
+    width: 7.5rem;
   }
 }
 
@@ -553,12 +553,6 @@ body {
   }
 }
 
-@media (max-width: 22.8125em) {
-  .movie {
-    width: 110px;
-  }
-}
-
 @media (min-width: 20em) and (max-width: 117.5em) {
 @supports (font-size: clamp( 2.5rem , 2.3717948718rem  +  0.641025641vw , 3.125rem )) {
     .header__logo {
@@ -596,15 +590,15 @@ body {
     }
 }
 
-@supports (width: clamp( 8.4375rem , 5.6810897436rem  +  13.7820512821vw , 21.875rem )) {
+@supports (width: clamp( 7.5rem , 4.5512820513rem  +  14.7435897436vw , 21.875rem )) {
     .movie {
-      width: clamp( 8.4375rem , 5.6810897436rem  +  13.7820512821vw , 21.875rem );
+      width: clamp( 7.5rem , 4.5512820513rem  +  14.7435897436vw , 21.875rem );
     }
 }
 
-@supports not (width: clamp( 8.4375rem , 5.6810897436rem  +  13.7820512821vw , 21.875rem )) {
+@supports not (width: clamp( 7.5rem , 4.5512820513rem  +  14.7435897436vw , 21.875rem )) {
     .movie {
-      width: calc(8.4375rem + 13.4375 * (100vw - 20rem) / 97.5);
+      width: calc(7.5rem + 14.375 * (100vw - 20rem) / 97.5);
     }
 }
 }
