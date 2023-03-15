@@ -14,6 +14,32 @@
         }));
     }
     let addWindowScrollEvent = false;
+    function headerScroll() {
+        addWindowScrollEvent = true;
+        const header = document.querySelector("header.header");
+        const headerShow = header.hasAttribute("data-scroll-show");
+        const headerShowTimer = header.dataset.scrollShow ? header.dataset.scrollShow : 500;
+        const startPoint = header.dataset.scroll ? header.dataset.scroll : 1;
+        let scrollDirection = 0;
+        let timer;
+        document.addEventListener("windowScroll", (function(e) {
+            const scrollTop = window.scrollY;
+            clearTimeout(timer);
+            if (scrollTop >= startPoint) {
+                !header.classList.contains("_header-scroll") ? header.classList.add("_header-scroll") : null;
+                if (headerShow) {
+                    if (scrollTop > scrollDirection) header.classList.contains("_header-show") ? header.classList.remove("_header-show") : null; else !header.classList.contains("_header-show") ? header.classList.add("_header-show") : null;
+                    timer = setTimeout((() => {
+                        !header.classList.contains("_header-show") ? header.classList.add("_header-show") : null;
+                    }), headerShowTimer);
+                }
+            } else {
+                header.classList.contains("_header-scroll") ? header.classList.remove("_header-scroll") : null;
+                if (headerShow) header.classList.contains("_header-show") ? header.classList.remove("_header-show") : null;
+            }
+            scrollDirection = scrollTop <= 0 ? 0 : scrollTop;
+        }));
+    }
     setTimeout((() => {
         if (addWindowScrollEvent) {
             let windowScroll = new Event("windowScroll");
@@ -23,7 +49,7 @@
         }
     }), 0);
     const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
-    const API_URl = "https://api.themoviedb.org/3/movie/popular?api_key=9bf74e379025d3a5253c5928f78a4a11&language=en-US&page=1";
+    const API_URl = "https://api.themoviedb.org/3/movie/popular?api_key=9bf74e379025d3a5253c5928f78a4a11&language=en-US&page=";
     const API_URL_SEARCH = "https://api.themoviedb.org/3/search/movie?api_key=9bf74e379025d3a5253c5928f78a4a11&language=en-US&page=1&include_adult=false&query=";
     getMovies(API_URl);
     async function getMovies(url) {
@@ -56,24 +82,7 @@
             search.value = "";
         }
     }));
-    const ul = document.querySelector("ul");
-    let allPages = 15;
-    function elem(allPages, page) {
-        let li = "";
-        let beforePages = page - 1;
-        let afterPages = page + 1;
-        let liActive;
-        if (page > 1) li += `<li class="button" onclick="elem(allPages, ${page - 1})" ><i class="_icon-arrow-prev"></i></li>`;
-        for (let pageLength = beforePages; pageLength <= afterPages; pageLength++) {
-            if (pageLength > allPages) continue;
-            if (0 == pageLength) pageLength += 1;
-            if (page == pageLength) liActive = "active"; else liActive = "";
-            li += `<li class="numb ${liActive}" onclick="elem(allPages, ${pageLength})" ><span>${pageLength}</span></li>`;
-        }
-        if (page < allPages) li += `<li class="button" onclick="elem(allPages, ${page + 1})" ><i class="_icon-arrow-next"></i></li>`;
-        ul.innerHTML = li;
-    }
-    elem(allPages, 1);
     window["FLS"] = true;
     isWebp();
+    headerScroll();
 })();
