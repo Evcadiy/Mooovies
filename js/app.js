@@ -49,7 +49,13 @@
         }
     }), 0);
     const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
-    const API_URl = "https://api.themoviedb.org/3/movie/popular?api_key=9bf74e379025d3a5253c5928f78a4a11&language=en-US&page=";
+    const API_URl = "https://api.themoviedb.org/3/movie/popular?api_key=9bf74e379025d3a5253c5928f78a4a11&language=en-US&page=1";
+    const API_URl_2 = "https://api.themoviedb.org/3/movie/popular?api_key=9bf74e379025d3a5253c5928f78a4a11&language=en-US&page=2";
+    const API_URl_3 = "https://api.themoviedb.org/3/movie/popular?api_key=9bf74e379025d3a5253c5928f78a4a11&language=en-US&page=3";
+    const API_URl_4 = "https://api.themoviedb.org/3/movie/popular?api_key=9bf74e379025d3a5253c5928f78a4a11&language=en-US&page=4";
+    const API_URl_5 = "https://api.themoviedb.org/3/movie/popular?api_key=9bf74e379025d3a5253c5928f78a4a11&language=en-US&page=5";
+    const API_URl_6 = "https://api.themoviedb.org/3/movie/popular?api_key=9bf74e379025d3a5253c5928f78a4a11&language=en-US&page=6";
+    const API_URl_7 = "https://api.themoviedb.org/3/movie/popular?api_key=9bf74e379025d3a5253c5928f78a4a11&language=en-US&page=7";
     const API_URL_SEARCH = "https://api.themoviedb.org/3/search/movie?api_key=9bf74e379025d3a5253c5928f78a4a11&language=en-US&page=1&include_adult=false&query=";
     getMovies(API_URl);
     async function getMovies(url) {
@@ -81,6 +87,41 @@
             getMovies(apiSearch);
             search.value = "";
         }
+    }));
+    const first = document.getElementById("1");
+    const second = document.getElementById("2");
+    const third = document.getElementById("3");
+    const fourth = document.getElementById("4");
+    const fifth = document.getElementById("5");
+    const sixth = document.getElementById("6");
+    const seventh = document.getElementById("7");
+    first.addEventListener("click", (function firstFn(e) {
+        e.preventDefault();
+        getMovies(API_URl);
+    }));
+    second.addEventListener("click", (function secondFn(e) {
+        e.preventDefault();
+        getMovies(API_URl_2);
+    }));
+    third.addEventListener("click", (function thirdFn(e) {
+        e.preventDefault();
+        getMovies(API_URl_3);
+    }));
+    fourth.addEventListener("click", (function fourthFn(e) {
+        e.preventDefault();
+        getMovies(API_URl_4);
+    }));
+    fifth.addEventListener("click", (function fifthFn(e) {
+        e.preventDefault();
+        getMovies(API_URl_5);
+    }));
+    sixth.addEventListener("click", (function sixthFn(e) {
+        e.preventDefault();
+        getMovies(API_URl_6);
+    }));
+    seventh.addEventListener("click", (function seventhFn(e) {
+        e.preventDefault();
+        getMovies(API_URl_7);
     }));
     window["FLS"] = true;
     isWebp();
