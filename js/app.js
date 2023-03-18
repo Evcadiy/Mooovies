@@ -14,32 +14,6 @@
         }));
     }
     let addWindowScrollEvent = false;
-    function headerScroll() {
-        addWindowScrollEvent = true;
-        const header = document.querySelector("header.header");
-        const headerShow = header.hasAttribute("data-scroll-show");
-        const headerShowTimer = header.dataset.scrollShow ? header.dataset.scrollShow : 500;
-        const startPoint = header.dataset.scroll ? header.dataset.scroll : 1;
-        let scrollDirection = 0;
-        let timer;
-        document.addEventListener("windowScroll", (function(e) {
-            const scrollTop = window.scrollY;
-            clearTimeout(timer);
-            if (scrollTop >= startPoint) {
-                !header.classList.contains("_header-scroll") ? header.classList.add("_header-scroll") : null;
-                if (headerShow) {
-                    if (scrollTop > scrollDirection) header.classList.contains("_header-show") ? header.classList.remove("_header-show") : null; else !header.classList.contains("_header-show") ? header.classList.add("_header-show") : null;
-                    timer = setTimeout((() => {
-                        !header.classList.contains("_header-show") ? header.classList.add("_header-show") : null;
-                    }), headerShowTimer);
-                }
-            } else {
-                header.classList.contains("_header-scroll") ? header.classList.remove("_header-scroll") : null;
-                if (headerShow) header.classList.contains("_header-show") ? header.classList.remove("_header-show") : null;
-            }
-            scrollDirection = scrollTop <= 0 ? 0 : scrollTop;
-        }));
-    }
     setTimeout((() => {
         if (addWindowScrollEvent) {
             let windowScroll = new Event("windowScroll");
@@ -56,6 +30,12 @@
     const API_URl_5 = "https://api.themoviedb.org/3/movie/popular?api_key=9bf74e379025d3a5253c5928f78a4a11&language=en-US&page=5";
     const API_URl_6 = "https://api.themoviedb.org/3/movie/popular?api_key=9bf74e379025d3a5253c5928f78a4a11&language=en-US&page=6";
     const API_URl_7 = "https://api.themoviedb.org/3/movie/popular?api_key=9bf74e379025d3a5253c5928f78a4a11&language=en-US&page=7";
+    const API_URl_8 = "https://api.themoviedb.org/3/movie/popular?api_key=9bf74e379025d3a5253c5928f78a4a11&language=en-US&page=8";
+    const API_URl_9 = "https://api.themoviedb.org/3/movie/popular?api_key=9bf74e379025d3a5253c5928f78a4a11&language=en-US&page=9";
+    const API_URl_10 = "https://api.themoviedb.org/3/movie/popular?api_key=9bf74e379025d3a5253c5928f78a4a11&language=en-US&page=10";
+    const API_URl_11 = "https://api.themoviedb.org/3/movie/popular?api_key=9bf74e379025d3a5253c5928f78a4a11&language=en-US&page=11";
+    const API_URl_12 = "https://api.themoviedb.org/3/movie/popular?api_key=9bf74e379025d3a5253c5928f78a4a11&language=en-US&page=12";
+    const API_URl_13 = "https://api.themoviedb.org/3/movie/popular?api_key=9bf74e379025d3a5253c5928f78a4a11&language=en-US&page=13";
     const API_URL_SEARCH = "https://api.themoviedb.org/3/search/movie?api_key=9bf74e379025d3a5253c5928f78a4a11&language=en-US&page=1&include_adult=false&query=";
     getMovies(API_URl);
     async function getMovies(url) {
@@ -78,8 +58,8 @@
             moviesEl.appendChild(movieEl);
         }));
     }
-    const script_form = document.querySelector("form");
-    const search = document.querySelector(".header__search");
+    const script_form = document.querySelector(".search-form");
+    const search = document.querySelector(".search-form__input");
     script_form.addEventListener("submit", (e => {
         e.preventDefault();
         const apiSearch = `${API_URL_SEARCH}${search.value}`;
@@ -95,6 +75,21 @@
     const fifth = document.getElementById("5");
     const sixth = document.getElementById("6");
     const seventh = document.getElementById("7");
+    const eighth = document.getElementById("8");
+    const ninth = document.getElementById("9");
+    const tenth = document.getElementById("10");
+    const eleventh = document.getElementById("11");
+    const twelfth = document.getElementById("12");
+    const thirteenth = document.getElementById("13");
+    var buttons = document.querySelectorAll(".page-number");
+    buttons.forEach((function(button) {
+        button.addEventListener("click", (function(e) {
+            e.preventDefault();
+            var activeButton = document.querySelector(".page-number.active");
+            if (activeButton) activeButton.classList.remove("active");
+            button.classList.add("active");
+        }));
+    }));
     first.addEventListener("click", (function firstFn(e) {
         e.preventDefault();
         getMovies(API_URl);
@@ -123,7 +118,34 @@
         e.preventDefault();
         getMovies(API_URl_7);
     }));
+    eighth.addEventListener("click", (function eighthFn(e) {
+        e.preventDefault();
+        getMovies(API_URl_8);
+    }));
+    ninth.addEventListener("click", (function ninthFn(e) {
+        e.preventDefault();
+        getMovies(API_URl_9);
+    }));
+    tenth.addEventListener("click", (function tenthFn(e) {
+        e.preventDefault();
+        getMovies(API_URl_10);
+    }));
+    eleventh.addEventListener("click", (function eleventhFn(e) {
+        e.preventDefault();
+        getMovies(API_URl_11);
+    }));
+    twelfth.addEventListener("click", (function twelfthFn(e) {
+        e.preventDefault();
+        getMovies(API_URl_12);
+    }));
+    thirteenth.addEventListener("click", (function thirteenthFn(e) {
+        e.preventDefault();
+        getMovies(API_URl_13);
+    }));
+    const searchButton = document.querySelector(".search-form__btn");
+    searchButton.addEventListener("click", (function showSearch() {
+        script_form.classList.toggle("_active");
+    }));
     window["FLS"] = true;
     isWebp();
-    headerScroll();
 })();

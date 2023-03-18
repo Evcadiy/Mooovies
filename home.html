@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20230316173307">
+	<link rel="stylesheet" href="css/style.min.css?_v=20230318124456">
 	<!-- <link rel="shortcut icon" href="favicon.ico"> -->
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,21 +17,30 @@
 		<header class="header">
 			<div class="header__container">
 				<a href="" class="header__logo">Mooovies</a>
-				<form action="">
-					<input autocomplete="off" type="text" name="form[]" data-error="Помилка" placeholder="Search" class="header__search">
-				</form>
+				<div class="header__search">
+					<button type="button" class="search-form__btn _icon-search"></button>
+					<form class="search-form" action="#">
+						<input autocomplete="off" type="text" name="form[]" data-error="Помилка" placeholder="Search" class="search-form__input">
+					</form>
+				</div>
 			</div>
 		</header>
 		<main class="page">
 			<div class="movies __container"></div>
 			<div class="page-numbers">
-				<a id="1" href="" class="page-number">1</a>
+				<a id="1" href="" class="page-number active">1</a>
 				<a id="2" href="" class="page-number">2</a>
 				<a id="3" href="" class="page-number">3</a>
 				<a id="4" href="" class="page-number">4</a>
 				<a id="5" href="" class="page-number">5</a>
 				<a id="6" href="" class="page-number">6</a>
 				<a id="7" href="" class="page-number">7</a>
+				<a id="8" href="" class="page-number">8</a>
+				<a id="9" href="" class="page-number">9</a>
+				<a id="10" href="" class="page-number">10</a>
+				<a id="11" href="" class="page-number">11</a>
+				<a id="12" href="" class="page-number">12</a>
+				<a id="13" href="" class="page-number">13</a>
 			</div>
 		</main>
 		<footer class="footer">
@@ -39,7 +48,7 @@
 			</div>
 		</footer>
 	</div>
-	<script src="js/app.min.js?_v=20230316173307"></script>
+	<script src="js/app.min.js?_v=20230318124456"></script>
 
 </body>
 
